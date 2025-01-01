@@ -1,0 +1,33 @@
+# Stage 1: Build the React app
+FROM node:18 AS react-build
+
+# Set working directory
+WORKDIR /app
+
+# Define build-time variables with default values
+ARG REACT_APP_BACKEND_HOST \
+    REACT_APP_BACKEND_PORT \
+    REACT_APP_API_KEY=default_api_key
+
+# Set environment variables for the build
+ENV REACT_APP_BACKEND_HOST=$REACT_APP_BACKEND_HOST \
+    REACT_APP_BACKEND_PORT=$REACT_APP_BACKEND_PORT \
+    REACT_APP_API_KEY=$REACT_APP_API_KEY
+
+# Copy all necessary files and install dependencies in one step
+COPY ./frontend/ ./
+# Optional: split the install & build into two layers (bigger image), for allowing the dependencies layer not 2 b built on every code change
+RUN npm install
+RUN npm run build 
+
+# Stage 2: Serve the React app
+FROM nginx:alpine
+
+# Copy the React build from the first stage
+COPY --from=react-build /app/build /usr/share/nginx/html
+
+# Expose the default Nginx port
+EXPOSE 80
+
+# Set Nginx to run in the foreground
+CMD ["nginx", "-g", "daemon off;"]
