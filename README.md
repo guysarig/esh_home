@@ -25,7 +25,7 @@
    ```
 3. Test the Frontend:
    ```bash
-   curl http://localhost:3000/
+   curl http://localhost:3100/
    ```
 4. Test the Backend:
    ```bash
@@ -75,3 +75,4 @@ To monitor the application, you can use Prometheus and Grafana.
 2. **Grafana**:
    - Grafana is being run in the docker-compose.yaml file.
    - The Grafana dashboard is available at http://localhost:3000.
+   - For importing a dashboard showing the custom metrics, import the grafana/dashboard.json file into Grafana (through the Grafana UI, or using the Grafana API [service account token has to be created locally for this]).
