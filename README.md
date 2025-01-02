@@ -31,7 +31,7 @@
    ```bash
    curl http://localhost:3100/
    ```
-   (this should return a "Hello, World!!!!", for generating the custom "fe_errors" metric - use the browser to access the frontend and generate errors by clicking the "Generate Error" button)
+   (this should return a "Hello, World!!!!" message. for generating the custom "fe_errors" metric - use the browser to access the frontend and generate errors by clicking the "Generate Error" button)
 4. Test the Backend:
    ```bash
    curl http://localhost:4100/api/
@@ -80,4 +80,11 @@ To monitor the application, you can use Prometheus and Grafana.
 2. **Grafana**:
    - Grafana is being run in the docker-compose.yaml file.
    - The Grafana dashboard is available at http://localhost:3000.
-   - For importing a dashboard showing the custom metrics, import the grafana/dashboard.json file into Grafana (through the Grafana UI, or using the Grafana API [service account token has to be created locally for this]).
+   - Add a Prometheus data source to Grafana (through the Grafana UI, or using the Grafana API, using http://prometheus:9090/ as the URL).
+   - Extract the uid of the Prometheus data source from the Grafana UI and replace the uid in the grafana/dashboard.json file, by running:
+     ```bash
+     cd grafana
+     replace_uid.sh <uid>
+     ```
+     where `<uid>` is the uid of the Prometheus data source.
+   - Import the dashboard showing the custom metrics: after replacing the uid, import the grafana/dashboard.json file into Grafana (through the Grafana UI, or using the Grafana API [service account token has to be created locally for this]).
