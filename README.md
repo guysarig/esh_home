@@ -19,7 +19,11 @@
    ```bash
    cd esh_home
    ```
-2. Build and run the Docker containers:
+2. Load the `.env` file:
+   ```bash  
+   set -o allexport; source .env; set +o allexport
+   ```
+3. Build and run the Docker containers:
    ```bash
    docker compose build && docker compose up
    ```
