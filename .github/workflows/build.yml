@@ -79,7 +79,7 @@ jobs:
           echo "Backend port: $REACT_APP_BACKEND_PORT"
           echo "Frontend port: $REACT_APP_FRONTEND_PORT"
           docker ps
-          sleep 20
+          sleep 60
           curl -f http://localhost:$REACT_APP_BACKEND_PORT/api || {
             echo "Backend test failed!";
             exit 1;
