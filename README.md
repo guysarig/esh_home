@@ -67,17 +67,11 @@ To run the app locally:
 To monitor the application, you can use Prometheus and Grafana.
 
 1. **Prometheus**: 
-   - Ensure Prometheus is installed and running.
-   - Add the following configuration to your `prometheus.yml`:
-     ```yaml
-     scrape_configs:
-       - job_name: 'esh_home'
-         static_configs:
-           - targets: ['localhost:9100']
-     ```
+   - Prometheus is being run in the docker-compose.yaml file.
+   - The Prometheus dashboard is available at http://localhost:9090.
+   - The Prometheus configuration is in the `prometheus/prometheus.yml` file.
+
 
 2. **Grafana**:
-   - Install Grafana and configure it to connect to your Prometheus instance.
-   - Import dashboards to visualize metrics.
-
-*Note: The backend is already set up to expose metrics using `prometheus_client`.*
+   - Grafana is being run in the docker-compose.yaml file.
+   - The Grafana dashboard is available at http://localhost:3000.
