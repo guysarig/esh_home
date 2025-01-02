@@ -31,9 +31,10 @@
    ```bash
    curl http://localhost:3100/
    ```
+   (this should return a "Hello, World!!!!", for generating the custom "fe_errors" metric - use the browser to access the frontend and generate errors by clicking the "Generate Error" button)
 4. Test the Backend:
    ```bash
-   curl http://localhost:4100/api/v1/
+   curl http://localhost:4100/api/
    ```
 
 ## Build Automation Process
