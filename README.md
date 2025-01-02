@@ -62,7 +62,22 @@ To run the app locally:
 
 *Note: To change the "Hello World" message, modify the `app.py` file in the backend directory.*
 
-## Architecture Decisions
+## Monitoring
 
-- **Frontend**: React.js - chosen for its popularity, maturity, and ease of use as a Node.js framework.
-- **Backend**: Python Flask - chosen for its popularity, maturity, and ease of use as a Python framework.
+To monitor the application, you can use Prometheus and Grafana.
+
+1. **Prometheus**: 
+   - Ensure Prometheus is installed and running.
+   - Add the following configuration to your `prometheus.yml`:
+     ```yaml
+     scrape_configs:
+       - job_name: 'esh_home'
+         static_configs:
+           - targets: ['localhost:9100']
+     ```
+
+2. **Grafana**:
+   - Install Grafana and configure it to connect to your Prometheus instance.
+   - Import dashboards to visualize metrics.
+
+*Note: The backend is already set up to expose metrics using `prometheus_client`.*
